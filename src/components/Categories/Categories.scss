@@ -1,0 +1,72 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.categories {
+  position: relative;
+  @include container;
+  padding-block: 32px;
+
+  &__list {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  &__item {
+    @include button-reset;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 112px;
+
+    @include focus-ring;
+
+    &:hover .categories__icon {
+      color: $color-primary;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    color: $color-text-strong;
+    background: $color-surface;
+    border-radius: $radius-md;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      box-shadow 0.2s;
+
+    @include until($bp-md) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: $font-medium;
+    color: $color-text-muted;
+    text-align: center;
+  }
+
+  &__item.is-active {
+    .categories__icon {
+      color: $color-primary;
+      background: $color-white;
+      box-shadow: $shadow-card;
+    }
+
+    .categories__label {
+      font-weight: $font-semibold;
+      color: $color-primary;
+    }
+  }
+}

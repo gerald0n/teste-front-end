@@ -78,7 +78,7 @@ describe('App', () => {
     expect(decrease).toBeDisabled()
     await user.click(increase)
     await user.click(increase)
-    expect(within(dialog).getByText('03')).toBeInTheDocument()
+    expect(within(dialog).getByText('3')).toBeInTheDocument()
   })
 
   it('mostra uma mensagem de erro e permite tentar novamente', async () => {

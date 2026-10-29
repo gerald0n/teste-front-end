@@ -106,6 +106,6 @@ npm test
 
 Os testes cobrem a formatação de preços, a renderização dos produtos vindos da API, a abertura e o fechamento do modal (incluindo foco e tecla Esc), o controle de quantidade e o fluxo de erro com nova tentativa.
 
-## Observações sobre o layout
+## Imagens
 
-As imagens do banner principal e dos banners de parceiros não estão disponíveis para exportação no arquivo público do Figma. Por isso, foram reproduzidas com gradientes em CSS que mantêm a composição, as cores e o contraste do layout. Para usar as fotos originais, basta trocar o `background` das classes `.hero` e `.partners__card`. As fotos dos produtos vêm do próprio JSON da API.
+As fotos do banner principal e dos banners de parceiros foram exportadas do Figma e redimensionadas para a web (`src/assets`, JPEG de 1600 px e 1000 px de largura). As fotos dos produtos vêm do próprio JSON da API.

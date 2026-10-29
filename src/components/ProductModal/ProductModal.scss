@@ -79,6 +79,7 @@
   }
 
   &__more {
+    @include button-reset;
     display: inline-block;
     margin-top: 4px;
     font-size: 12px;

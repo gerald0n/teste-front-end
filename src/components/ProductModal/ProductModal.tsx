@@ -91,9 +91,9 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
           <p id="product-modal-description" className="modal__description">
             {product.descriptionShort}
           </p>
-          <a href="#" className="modal__more">
+          <button type="button" className="modal__more">
             Veja mais detalhes do produto &gt;
-          </a>
+          </button>
 
           <div className="modal__actions">
             <div className="modal__quantity" role="group" aria-label="Quantidade">
@@ -106,7 +106,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 <Icon name="minus" size={18} strokeWidth={2} />
               </button>
               <output aria-live="polite" aria-label="Quantidade selecionada">
-                {String(quantity).padStart(2, '0')}
+                {quantity}
               </output>
               <button
                 type="button"

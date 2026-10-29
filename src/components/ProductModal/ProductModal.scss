@@ -1,0 +1,168 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: $color-overlay;
+  animation: fade-in 0.2s ease-out;
+
+  &__dialog {
+    position: relative;
+    display: grid;
+    gap: 24px;
+    width: 100%;
+    max-width: 600px;
+    max-height: calc(100vh - 32px);
+    padding: 40px 24px 28px;
+    overflow-y: auto;
+    background: $color-white;
+    border-radius: $radius-md;
+    box-shadow: $shadow-modal;
+    animation: pop-in 0.2s ease-out;
+
+    @include from($bp-md) {
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 40px 48px 40px 40px;
+    }
+  }
+
+  &__close {
+    @include button-reset;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    color: $color-text;
+    @include focus-ring;
+  }
+
+  &__media {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: auto;
+      max-height: 200px;
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: $font-regular;
+    line-height: 1.4;
+    color: $color-text;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  &__price {
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: $font-semibold;
+    color: $color-text-strong;
+  }
+
+  &__description {
+    margin-top: 24px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: $color-text-muted;
+  }
+
+  &__more {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: $font-semibold;
+    color: $color-primary;
+    @include focus-ring;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  &__quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 86px;
+    height: 32px;
+    padding-inline: 6px;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+
+    button {
+      @include button-reset;
+      display: flex;
+      color: $color-text;
+      @include focus-ring;
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.35;
+      }
+    }
+
+    output {
+      font-size: 14px;
+      color: $color-text;
+    }
+  }
+
+  &__buy {
+    @include button-reset;
+    flex: 1;
+    min-width: 140px;
+    height: 32px;
+    font-size: 12px;
+    font-weight: $font-semibold;
+    color: $color-text-strong;
+    text-transform: uppercase;
+    background: $color-secondary;
+    border-radius: $radius-sm;
+    transition: background-color 0.2s;
+    @include focus-ring;
+
+    &:hover {
+      background: $color-secondary-dark;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal__dialog {
+    animation: none;
+  }
+}

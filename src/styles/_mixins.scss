@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: calc(#{$container-width} + #{$container-gutter * 2});
+  margin-inline: auto;
+  padding-inline: $container-gutter;
+}
+
+@mixin from($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin until($breakpoint) {
+  @media (max-width: ($breakpoint - 1px)) {
+    @content;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin focus-ring($color: $color-primary) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}
+
+@mixin button-reset {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+@mixin section-title {
+  font-size: 22px;
+  font-weight: $font-semibold;
+  line-height: 1.3;
+  color: $color-primary;
+  text-align: center;
+
+  @include from($bp-md) {
+    font-size: 24px;
+  }
+}

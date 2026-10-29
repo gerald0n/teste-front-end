@@ -1,0 +1,70 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$gap: 24px;
+
+.carousel {
+  position: relative;
+
+  &__track {
+    position: relative;
+    display: grid;
+    grid-auto-columns: calc((100% - #{$gap}) / 1.4);
+    grid-auto-flow: column;
+    gap: $gap;
+    padding: 8px 4px 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include from($bp-sm) {
+      grid-auto-columns: calc((100% - #{$gap}) / 2);
+    }
+
+    @include from($bp-md) {
+      grid-auto-columns: calc((100% - #{$gap * 2}) / 3);
+    }
+
+    @include from($bp-lg) {
+      grid-auto-columns: calc((100% - #{$gap * 3}) / 4);
+    }
+  }
+
+  &__slide {
+    scroll-snap-align: start;
+  }
+
+  &__arrow {
+    @include button-reset;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: none;
+    color: $color-text-strong;
+    transform: translateY(-50%);
+    transition: opacity 0.2s;
+    @include focus-ring;
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.25;
+    }
+
+    &--prev {
+      left: -48px;
+    }
+
+    &--next {
+      right: -48px;
+    }
+
+    @media (min-width: 1112px) {
+      display: flex;
+    }
+  }
+}

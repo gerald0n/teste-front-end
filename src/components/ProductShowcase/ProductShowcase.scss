@@ -1,0 +1,131 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.showcase {
+  @include container;
+  padding-block: 32px;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    @include section-title;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    width: 100%;
+
+    &::before,
+    &::after {
+      flex: 1;
+      height: 1px;
+      content: '';
+      background: $color-border;
+    }
+  }
+
+  &__see-all {
+    font-size: 12px;
+    font-weight: $font-semibold;
+    color: $color-text-strong;
+    @include focus-ring;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    width: 100%;
+    margin-top: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  &__tab {
+    @include button-reset;
+    flex: 1 0 auto;
+    min-width: 110px;
+    height: 36px;
+    padding-inline: 12px;
+    font-size: 12px;
+    font-weight: $font-regular;
+    color: $color-text;
+    text-transform: uppercase;
+    border: 1px solid $color-border;
+    transition: color 0.2s;
+    @include focus-ring;
+
+    & + & {
+      border-left: 0;
+    }
+
+    @include from($bp-lg) {
+      flex: 1 1 0;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &.is-active {
+      font-weight: $font-semibold;
+      color: $color-primary;
+    }
+  }
+
+  &__skeleton {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    padding: 8px 4px 20px;
+  }
+
+  &__skeleton-card {
+    height: 400px;
+    background: linear-gradient(90deg, $color-surface 25%, #ececec 50%, $color-surface 75%);
+    background-size: 200% 100%;
+    border-radius: $radius-md;
+    animation: shimmer 1.4s infinite;
+  }
+
+  &__feedback {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: 40px 16px;
+    color: $color-text-muted;
+    text-align: center;
+  }
+
+  &__retry {
+    @include button-reset;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: $font-semibold;
+    color: $color-white;
+    background: $color-primary;
+    border-radius: $radius-sm;
+    @include focus-ring;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase__skeleton-card {
+    animation: none;
+  }
+}

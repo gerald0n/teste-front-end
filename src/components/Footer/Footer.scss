@@ -1,0 +1,88 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+  background: $color-surface;
+
+  &__inner {
+    @include container;
+    display: grid;
+    gap: 32px;
+    padding-block: 40px;
+
+    @include from($bp-md) {
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+    }
+  }
+
+  &__brand {
+    @include from($bp-md) {
+      padding-right: 40px;
+      border-right: 1px solid $color-border;
+    }
+  }
+
+  &__about {
+    max-width: 240px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: $color-text;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+
+    a {
+      display: flex;
+      color: $color-text;
+      transition: color 0.2s;
+      @include focus-ring;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+
+    @include from($bp-md) {
+      padding-left: 40px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: $font-semibold;
+    color: $color-primary;
+  }
+
+  &__link {
+    display: inline-block;
+    padding-block: 3px;
+    font-size: 12px;
+    color: $color-text;
+    @include focus-ring;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__copyright {
+    padding: 14px 16px;
+    font-size: 11px;
+    color: $color-text-muted;
+    text-align: center;
+    background: $color-white;
+    border-top: 1px solid $color-border;
+  }
+}

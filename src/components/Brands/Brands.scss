@@ -1,0 +1,52 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.brands {
+  @include container;
+  padding-block: 32px;
+
+  &__title {
+    @include section-title;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    padding: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 160px;
+    background: $color-white;
+    border-radius: 50%;
+    box-shadow: $shadow-card;
+    transition: transform 0.2s;
+    @include focus-ring;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+
+    @include until($bp-md) {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &__logo {
+    font-size: 18px;
+
+    @include until($bp-md) {
+      font-size: 14px;
+    }
+  }
+}

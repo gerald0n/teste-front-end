@@ -1,0 +1,67 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.partners {
+  @include container;
+  display: grid;
+  gap: 12px;
+  padding-block: 32px;
+
+  @include from($bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 280px;
+    overflow: hidden;
+    border-radius: $radius-lg;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 60%, rgba(0, 0, 0, 0.1) 100%),
+      radial-gradient(ellipse at 75% 35%, #8fb4d6 0%, #3e4f63 18%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%, #6b4a2a 0%, transparent 55%),
+      linear-gradient(180deg, #3b2a1d 0%, #1b140f 100%);
+  }
+
+  &__content {
+    position: relative;
+    max-width: 230px;
+    padding: 32px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: $font-bold;
+    line-height: 1.2;
+    color: $color-white;
+  }
+
+  &__text {
+    margin-top: 6px;
+    font-size: 14px;
+    color: $color-white;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    margin-top: 28px;
+    font-size: 12px;
+    font-weight: $font-bold;
+    color: $color-text-strong;
+    text-transform: uppercase;
+    background: $color-secondary;
+    border-radius: $radius-sm;
+    transition: background-color 0.2s;
+    @include focus-ring($color-white);
+
+    &:hover {
+      background: $color-secondary-dark;
+    }
+  }
+}
